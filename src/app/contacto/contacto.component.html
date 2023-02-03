@@ -1,0 +1,32 @@
+<div class="head-form">
+    <h1>Formulario de Contacto</h1>
+</div>
+<div class="container-form">
+    <form (ngSubmit)="onSubmit()" [formGroup]="contactoForm">
+        <div class="mb-4">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+            <div *ngIf="contactoForm.get('name')?.touched && contactoForm.get('name')?.errors?.['required']" class="alert alert-danger">Este campo es requerido</div>
+            <div *ngIf="contactoForm.get('name')?.touched && contactoForm.get('name')?.errors?.['minlength']" class="alert alert-danger">El nombre debe tener mas de {{contactoForm.get('name')?.errors?.['minlength']?.requiredLength}} letras</div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Correo</label>
+            <input type="text" class="form-control" id="email" name="email" required formControlName="email">
+            <div *ngIf="contactoForm.get('email')?.touched && contactoForm.get('email')?.errors?.['required']" class="alert alert-danger">Este campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="asunto" class="form-label">Asunto</label>
+            <input type="text" class="form-control" id="asunto" name="asunto" required formControlName="asunto">
+            <div *ngIf="contactoForm.get('asunto')?.touched && contactoForm.get('asunto')?.errors?.['required']" class="alert alert-danger">Este campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="" class="form-label">Comentario</label>
+            <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Deja un comentario..." formControlName="comment" required></textarea>
+            <div *ngIf="contactoForm.get('comment')?.touched && contactoForm.get('comment')?.errors?.['required']" class="alert alert-danger">Este campo es requerido.</div>
+            <div *ngIf="contactoForm.get('comment')?.touched && contactoForm.get('comment')?.errors?.['minlength']" class="alert alert-danger">El comentario debe tener mas de {{contactoForm.get('comment')?.errors?.['minlength']?.requiredLength}} letras</div>
+        </div>
+        <div class="btn">
+            <button type="submit" class="btn btn-info btn-lg">Enviar</button>
+        </div>
+    </form>
+</div>
